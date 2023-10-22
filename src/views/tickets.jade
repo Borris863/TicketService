@@ -1,0 +1,104 @@
+extends layout
+
+block content
+
+  .container
+    div
+       hr.mb-4
+      .col.order-md-1
+        h4.mb-3 Details
+        form.needs-validation(action='/tickets' method='post')
+          .row
+            .col-md-5.mb-3
+                label(for='firstName') First name
+                input#firstName.form-control(type='text' placeholder='' value='' name='firstName' required='')
+            .col-md-5.mb-3
+                label(for='lastName') Last name
+                input#lastName.form-control(type='text' placeholder='' value='' name='lastName' required='')
+            .col-md-5.mb-3
+                label(for='username') Username
+                .input-group
+                if error == 'username'
+                  input#username.form-control.is-invalid(type='text' placeholder='Username' required='' value='' name='username')
+                  .invalid-feedback(style='width: 100%;')
+                        | Your username does not match with an account.
+                else
+                  input#username.form-control(type='text' placeholder='Username' required='' value='' name='username')
+
+            .col-md-5.mb-3
+              label(for='email') Email
+              input#email.form-control(type='email' placeholder='you@example.com' required='' value='' name='email')
+          br
+          hr.mb-4
+          h4.mb-3 Select tickets
+          .row
+            .col-md-5.mb-3
+              label(for='country') Film
+              select#film.custom-select.d-block.w-100(name='film' required='')
+                option(value='') Choose one
+                option(value='pawPatrol') Paw patrol
+            .col-md-4.mb-3
+              label(for='ticketType') Ticket type
+              if error == 'ticketType'
+                select#ticketType.custom-select.d-block.w-100.is-invalid(name='ticketType' required='')
+                  option(value='') Choose one
+                  option(value='Infant') Infant - Free
+                  option(value='Child') Child - £10.00
+                  option(value='Adult') Adult - £20.00
+                .invalid-feedback
+                  | An adult ticket must be selected too  
+              else
+                select#ticketType.custom-select.d-block.w-100(name='ticketType' required='')
+                  option(value='') Choose one
+                  option(value='Infant') Infant - Free
+                  option(value='Child') Child - £10.00
+                  option(value='Adult') Adult - £20.00
+
+            .col-md-3.mb-3
+              label(for='amount') Amount
+              if error == 'numOfTickets'
+                input#amount.form-control.is-invalid(type='number' placeholder='0' value='' name='amount' min="0" max="20" required='')
+                .invalid-feedback(style='width: 100%;')
+                    | A maximum of 20 tickets can only be purchased at once
+              else
+                input#amount.form-control(type='number' placeholder='0' value='' name='amount' min="0" max="20" required='')
+
+          br
+          span.add Add more tickets #[i.fa-solid.fa-circle-plus.fa-2xl]
+          br
+          br
+          hr.mb-4
+          h4.mb-3 Payment
+          .d-block.my-3
+            .custom-control.custom-radio
+              input#credit.custom-control-input(name='paymentMethod' type='radio' checked='' required='' value='credit')
+              label.custom-control-label(for='credit') Credit card
+            .custom-control.custom-radio
+              input#debit.custom-control-input(name='paymentMethod' type='radio' required='' value='debit')
+              label.custom-control-label(for='debit') Debit card
+            .custom-control.custom-radio
+              input#paypal.custom-control-input(name='paymentMethod' type='radio' required='' value='paypal')
+              label.custom-control-label(for='paypal') PayPal
+          .row
+            .col-md-6.mb-3
+              label(for='cc-name') Name on card
+              input#cc-name.form-control(type='text' placeholder='Mrs Jane Smith' required='' value='' name='cardName')
+              small.text-muted Full name as displayed on card
+            .col-md-6.mb-3
+              label(for='cc-number') Card number
+              input#cc-number.form-control(type='number' placeholder='5555555555554444' required='' value='' name='cardNumber')
+          .row
+            .col-md-3.mb-3
+              label(for='cc-expiration') Expiry date
+              input#cc-expiration.form-control(type='text' placeholder='09/26' required='' value='' name='expiryDate')
+            .col-md-3.mb-3
+              label(for='cc-cvv') CVV
+              input#cc-cvv.form-control(type='number' placeholder='198' required='' value='' name='cvv')
+          hr.mb-4
+          br
+          br
+          input.btn.btn-primary.btn-lg.btn-block(type='submit' name='btnOrder' value='Continue')
+          br
+          br
+          hr.mb-4
+
