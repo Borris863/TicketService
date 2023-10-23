@@ -2,8 +2,9 @@
   "name": "ticket_service",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node ./src/bin/www",
+    "start": "node ./src/app",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "lint:check": "eslint .",

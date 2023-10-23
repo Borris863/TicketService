@@ -6,6 +6,4 @@ async function getAccounts() {
   return accounts;
 }
 
-module.exports = {
-  getAccounts,
-};
+export default getAccounts;

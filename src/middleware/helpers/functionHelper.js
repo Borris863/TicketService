@@ -33,7 +33,7 @@ async function checkTicketRequests(ticketRequests) {
   return { isAdultTicket, isValidNumOfTickets, totalNumOfTickets };
 }
 
-module.exports = {
+export default {
   checkAccounts,
   checkTicketRequests,
 };

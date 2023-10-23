@@ -1,11 +1,11 @@
-const accountsHelper = require('../../middleware/helpers/accounts');
-const functionHelper = require('../../middleware/helpers/functionHelper');
+import accountsHelper from '../../middleware/helpers/accounts.js';
+import functionHelper from '../../middleware/helpers/functionHelper.js';
 
-module.exports = () => async (req, res) => {
+export default () => async (req, res) => {
   console.log(req.body);
 
   // get accounts to check against
-  const accounts = await accountsHelper.getAccounts();
+  const accounts = await accountsHelper();
   const { username } = req.body;
 
   // check username input against all accounts and if not match throw error in page

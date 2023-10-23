@@ -1,14 +1,22 @@
-require('dotenv').config();
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const sessions = require('express-session');
-const logger = require('morgan');
+import 'dotenv/config';
+import createError from 'http-errors';
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import sessions from 'express-session';
+import logger from 'morgan';
 
-const indexRouter = require('./routes/index');
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+import indexRouter from './routes/index.js';
 
 const app = express();
+
+const port = 3000;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,4 +54,8 @@ app.use((err, req, res) => {
   res.render('error');
 });
 
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+export default app;

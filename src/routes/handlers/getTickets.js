@@ -1,6 +1,8 @@
-const ticketPaymentService = require('../../thirdparty/paymentgateway/TicketPaymentService');
+// import TicketPaymentService from '../../thirdparty/paymentgateway/TicketPaymentService.js';
 
-module.exports = () => async (req, res) => {
-  console.log(ticketPaymentService);
+export default () => async (req, res) => {
+  // const test = new TicketPaymentService();
+  // test.makePayment('red', 23);
+  // console.log(test);
   res.render('tickets', { title: 'Tickets' });
 };
