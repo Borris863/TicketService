@@ -1,9 +1,9 @@
+/* eslint-disable no-shadow */
+/* eslint-disable import/extensions */
 import accountsHelper from '../../middleware/helpers/accounts.js';
 import functionHelper from '../../middleware/helpers/functionHelper.js';
 
 export default () => async (req, res) => {
-  console.log(req.body);
-
   // get accounts to check against
   const accounts = await accountsHelper();
   const { username } = req.body;
@@ -27,13 +27,24 @@ export default () => async (req, res) => {
   if (Array.isArray(ticketType)) {
     ticketRequests = ticketType.map((v, i) => ({
       ticketType: ticketType[i],
-      ticketAmount: ticketAmount[i],
+      ticketAmount: Number(ticketAmount[i]),
       film: film[i],
     }));
   } else {
     const ticketRequest = { ticketType, ticketAmount, film };
     ticketRequests.push(ticketRequest);
   }
+
+  // check if there are mutliple tickets of same type and combine them
+  ticketRequests = ticketRequests.reduce((r, { ticketType, ticketAmount }) => {
+    const temp = r.find((o) => o.ticketType === ticketType);
+    if (temp) {
+      temp.ticketAmount += ticketAmount;
+    } else {
+      r.push({ ticketType, ticketAmount, film: 'Frozen' });
+    }
+    return r;
+  }, []);
 
   // freeze the ticket request so that it is immutable
   ticketRequests = Object.freeze(ticketRequests);
@@ -57,7 +68,16 @@ export default () => async (req, res) => {
     });
   }
 
-  // render the confirm page with ticketRequests, user details and price
+  // if all validation checks are successful then direct to summary screen
+  if (
+    accountChecks.accountMatch !== false &&
+    checkTicketRequestDetails.isAdultTicket !== false &&
+    checkTicketRequestDetails.isValidNumOfTickets !== false
+  ) {
+    req.session.tickets = ticketRequests;
+    req.session.accountId = accountChecks.accountId;
+    req.session.details = req.body;
 
-  // https://bbbootstrap.com/snippets/bootstrap-order-confirmation-invoice-bill-template-49857128 use for final page
+    res.redirect('/summary');
+  }
 };

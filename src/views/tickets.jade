@@ -11,15 +11,15 @@ block content
           .row
             .col-md-5.mb-3
                 label(for='firstName') First name
-                input#firstName.form-control(type='text' placeholder='' value='' name='firstName' required='')
+                input#firstName.form-control(type='text' placeholder='First name' maxlength="32" pattern="[A-Za-z]{1,32}" value='' name='firstName' required='')
             .col-md-5.mb-3
                 label(for='lastName') Last name
-                input#lastName.form-control(type='text' placeholder='' value='' name='lastName' required='')
+                input#lastName.form-control(type='text' placeholder='Last name' maxlength="32" pattern="[A-Za-z]{1,32}" value='' name='lastName' required='')
             .col-md-5.mb-3
                 label(for='username') Username
                 .input-group
                 if error == 'username'
-                  input#username.form-control.is-invalid(type='text' placeholder='Username' required='' value='' name='username')
+                  input#username.form-control.is-invalid(type='text' placeholder='username' required='' value='' name='username')
                   .invalid-feedback(style='width: 100%;')
                         | Your username does not match with an account.
                 else
@@ -36,7 +36,7 @@ block content
               label(for='country') Film
               select#film.custom-select.d-block.w-100(name='film' required='')
                 option(value='') Choose one
-                option(value='pawPatrol') Paw patrol
+                option(value='Frozen') Frozen
             .col-md-4.mb-3
               label(for='ticketType') Ticket type
               if error == 'ticketType'
@@ -55,16 +55,16 @@ block content
                   option(value='Adult') Adult - £20.00
 
             .col-md-3.mb-3
-              label(for='amount') Amount
+              label(for='amount') Number of tickets
               if error == 'numOfTickets'
-                input#amount.form-control.is-invalid(type='number' placeholder='0' value='' name='amount' min="0" max="20" required='')
+                input#amount.form-control.is-invalid(type='number' placeholder='0' value='' name='amount' min="0" max="20" required='' maxLength="2" pattern="^([1-9]|1[0123456789]|2[0])$")
                 .invalid-feedback(style='width: 100%;')
                     | A maximum of 20 tickets can only be purchased at once
               else
                 input#amount.form-control(type='number' placeholder='0' value='' name='amount' min="0" max="20" required='')
 
           br
-          span.add Add more tickets #[i.fa-solid.fa-circle-plus.fa-2xl]
+          span.add Add more tickets (max 3) #[i.fa-solid.fa-circle-plus.fa-2xl]
           br
           br
           hr.mb-4
@@ -82,18 +82,18 @@ block content
           .row
             .col-md-6.mb-3
               label(for='cc-name') Name on card
-              input#cc-name.form-control(type='text' placeholder='Mrs Jane Smith' required='' value='' name='cardName')
+              input#cc-name.form-control(type='text' placeholder='Name on card' maxlength="32" pattern="[A-Za-z]{1,32}" required='' value='' name='cardName')
               small.text-muted Full name as displayed on card
             .col-md-6.mb-3
               label(for='cc-number') Card number
-              input#cc-number.form-control(type='number' placeholder='5555555555554444' required='' value='' name='cardNumber')
+              input#cc-number.form-control(type='tel' maxlength="19" placeholder="xxxx xxxx xxxx xxxx" required='' value='' name='cardNumber')
           .row
             .col-md-3.mb-3
               label(for='cc-expiration') Expiry date
-              input#cc-expiration.form-control(type='text' placeholder='09/26' required='' value='' name='expiryDate')
+              input#cc-expiration.form-control(type='number' placeholder='MMYY' required='' maxlength="4" value='' name='expiryDate')
             .col-md-3.mb-3
               label(for='cc-cvv') CVV
-              input#cc-cvv.form-control(type='number' placeholder='198' required='' value='' name='cvv')
+              input#cc-cvv.form-control(type='number' placeholder='xxx' required='' maxlength="3" value='' name='cvv')
           hr.mb-4
           br
           br

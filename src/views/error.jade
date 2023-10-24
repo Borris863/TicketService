@@ -1,6 +1,14 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+
+ .container.mt-5.mb-5
+  .row.d-flex.justify-content-center
+    .col-md-8
+      .card
+        .invoice.p-5
+          h5 There has been an error:
+          br
+          span There has been an error in the service or this page does not exist, please visit the main page #[a(href='http://localhost:3000/tickets') here] and try again.
+
+

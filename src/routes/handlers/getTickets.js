@@ -1,8 +1,4 @@
-// import TicketPaymentService from '../../thirdparty/paymentgateway/TicketPaymentService.js';
-
 export default () => async (req, res) => {
-  // const test = new TicketPaymentService();
-  // test.makePayment('red', 23);
-  // console.log(test);
+  // render the main ticket page
   res.render('tickets', { title: 'Tickets' });
 };
