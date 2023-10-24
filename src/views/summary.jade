@@ -1,0 +1,40 @@
+extends layout
+
+block content
+
+ .container.mt-5.mb-5
+  .row.d-flex.justify-content-center
+    .col-md-8
+      .card
+        .invoice.p-5
+          h5 Summary of your order:
+          span.font-weight-bold.d-block.mt-4 Hello !{username}
+          span Please review your order details below, please note that infant tickets will not be reserved a seat as they are required to sit with you.
+          .payment.border-top.mt-3.mb-3.border-bottom.table-responsive
+            table.table.table-borderless
+              tbody
+              each ticket in tickets
+                tr
+                  td(width='60%')
+                    span.font-weight-bold !{ticket.film}
+                    .product-qty
+                      span.d-block Number of tickets: !{ticket.ticketAmount}
+                      span Type: !{ticket.ticketType}
+                  td(width='20%')
+                    .text-right
+                      span.font-weight-bold £!{ticket.ticketCost}
+          .row.d-flex.justify-content-end
+            .col-md-5
+              table.table.table-borderless
+                tbody.totals
+                  tr.border-top.border-bottom
+                    td
+                      .text-left
+                        span.font-weight-bold Total
+                    td
+                      .text-right
+                        span.font-weight-bold £!{overallCost}
+          p
+            | To complete your order press the purchase button below:
+          form(method='post' action='/summary')
+            button.btn.btn-primary(type='submit') Purchase

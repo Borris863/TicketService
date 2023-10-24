@@ -1,0 +1,55 @@
+extends layout
+
+block content
+
+ .container.mt-5.mb-5
+  .row.d-flex.justify-content-center
+    .col-md-8
+      .card
+        .invoice.p-5
+          h5 Your order was successful!
+          span See below your order details
+          .payment.border-top.mt-3.mb-3.border-bottom.table-responsive
+            table.table.table-borderless
+              tbody
+                tr
+                  td
+                    .py-2
+                      span.d-block.text-muted Order Date
+                      span !{orderDate}
+                  td
+                    .py-2
+                      span.d-block.text-muted Order No
+                      span !{orderNumber}
+                  td
+                    .py-2
+                      span.d-block.text-muted Seats reserved
+                      span !{nomOfSeats}
+          span You ordered the following:
+          .product.border-bottom.table-responsive
+            table.table.table-borderless
+              tbody
+              each ticket in tickets
+                tr
+                  td(width='60%')
+                    span.font-weight-bold !{ticket.film}
+                    .product-qty
+                      span.d-block Number of tickets: !{ticket.numOfTickets}
+                      span Type: !{ticket.ticketType}
+                  td(width='20%')
+                    .text-right
+                      span.font-weight-bold £!{ticket.totalCost}
+          .row.d-flex.justify-content-end
+            .col-md-5
+              table.table.table-borderless
+                tbody.totals
+                  tr.border-top.border-bottom
+                    td
+                      .text-left
+                        span.font-weight-bold Total
+                    td
+                      .text-right
+                        span.font-weight-bold £!{overallCost}
+          p
+            | Shortly you will receive an email to !{email} detailing your specific seat reservations.
+          p.font-weight-bold.mb-0 Thanks for shopping with us!

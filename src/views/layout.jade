@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    title= title
+    link(href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(href="https://getbootstrap.com/docs/4.0/examples/checkout/form-validation.css" rel="stylesheet")
+    link(rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.4.2/css/all.css")
+    link(href="css/main.css" rel="stylesheet")
+
+  header
+    nav.navbar.navbar-inverse
+      .container-fluid.justify-content-center
+        .navbar-header
+          .navbar-brand
+            | Ticket service 
+            i.fa-solid.fa-ticket
+  
+  body.homepage
+    block content
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+    script(src='https://kit.fontawesome.com/719533a120.js')
+    script(src='js/main.js')
+
+
+  footer.text-center
+    .container
+      section.mt-5
+        .text-center.d-flex.justify-content-center.pt-5
+          .text-center.p-3
+            | © 2023 Copyright: TicketService
