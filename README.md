@@ -43,6 +43,7 @@ To run the code use the following command:
  ```sh
   npm start
   ```
+Then go to http://localhost:3000/tickets which is the entry point of the service
 
 To test the code run this command:
 
